@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="shop.order.vo.OrderItem" table="orderitem">
+		<id name="itemid">
+			<generator class="native"/>
+		</id>
+		
+		<property name="count"/>
+		<property name="subtotal"/>
+		<!-- 订单项与商品的关系(虽然是有关系，但是没有反应在表中)
+		订单项多对1与商品，
+		当商品的表中没有配置订单项的相关信息
+		 -->
+		<many-to-one name="product" lazy="false" class="shop.product.vo.Product" column="pid">
+		</many-to-one>
+		<!-- 订单项与订单的关系 -->
+		<many-to-one name="order" class="shop.order.vo.Order" column="oid"/>
+		
+	</class>
+</hibernate-mapping>
+
+
+
+
